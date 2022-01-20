@@ -5,7 +5,17 @@ import axios from 'axios';
 import Users from './hooks/Users';
 
 function App() {
-  return <Users></Users>;
+  return (
+    <div>
+      <button className='button'>Hello World</button>
+      <input
+        className='input is-primary'
+        type='text'
+        placeholder='Primary input'
+      ></input>
+      <Users></Users>
+    </div>
+  );
 }
 
 export default App;
