@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import IUser from './User';
+import { Abc } from './User';
 
-const Users = ({}) => {
-  const [users, setUsers] = useState([]);
+function Users() {
+  const [users, setUsers] = useState<Abc[]>([]);
 
   useEffect(() => {
     async function getUsers() {
@@ -22,6 +22,6 @@ const Users = ({}) => {
       </ul>
     </div>
   );
-};
+}
 
 export default Users;

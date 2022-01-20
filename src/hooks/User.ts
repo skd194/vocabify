@@ -1,4 +1,4 @@
-export default interface IUser {
+export interface Abc {
     id: number;
     name: string;
     username: string;
