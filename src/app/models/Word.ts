@@ -1,5 +1,5 @@
 
-export interface Word {
+export interface IWord {
   word: string;
   definition: string[];
 }

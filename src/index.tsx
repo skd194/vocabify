@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import 'bulma/css/bulma.css';
 import './app/layout/styles.css';
 
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

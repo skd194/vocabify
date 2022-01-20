@@ -1,7 +1,7 @@
-import { Word } from "./Word";
+import { IWord } from "./Word";
 
 
-export interface WordBook {
+export interface IWordBook {
   id: number;
-  words: Word[];
+  words: IWord[];
 }

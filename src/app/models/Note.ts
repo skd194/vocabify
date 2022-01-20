@@ -1,8 +1,6 @@
-import { WordBook } from "./WordBook";
-
-
-export interface Note {
+import { IWordBook } from "./WordBook";
+export interface INote {
   id: number;
   content: string;
-  wordbook: WordBook[];
+  wordbook: IWordBook;
 }

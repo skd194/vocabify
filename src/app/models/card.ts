@@ -1,9 +1,9 @@
-import { Note } from "./Note";
+import { INote } from "./Note";
 
-export interface Card {
+export interface ICard {
   id: number;
   name: string;
-  notes: Note[];
+  notes: INote[];
 }
 
 
