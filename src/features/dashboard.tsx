@@ -16,7 +16,10 @@ function Dashboard({ cards }: IDashboardProps) {
   return (
     <React.Fragment>
       <div className="tile is-ancestor">
-        <div className="tile is-2 box" style={{height: 500, overflow: "hidden", overflowY: "scroll"}}>
+        <div
+          className="tile is-2 box"
+          style={{ height: "90vh", overflow: "auto", overflowY: "scroll" }}
+        >
           <div className="tile is-child">
             <aside className="menu">
               <p className="menu-label">General</p>

@@ -19,3 +19,18 @@ code {
 .logo {
   border-radius: 25px;
 }
+
+::-webkit-scrollbar {
+  width: 8px;     
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(255, 255, 255); 
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: orange;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: .5px solid rgb(226, 225, 222);  /* creates padding around scroll thumb */
+}
