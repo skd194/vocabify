@@ -1,7 +1,7 @@
 import { mdiCardPlus } from "@mdi/js";
 import Icon from "@mdi/react";
 import * as React from "react";
-import { ICard } from "../app/models/card";
+import { ICard } from "./models/card";
 import Card from "./card";
 
 interface IDashboardProps {

@@ -1,6 +1,5 @@
-import React, { Fragment, useState } from "react";
-import Dashboard from "../../features/dashboard";
-import Users from "../../hooks/Users";
+import Dashboard from "../dashboard";
+import Users from "../hooks/Users";
 import { ICard } from "../models/card";
 import NavBar from "./NavBar";
 

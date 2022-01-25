@@ -1,5 +1,3 @@
-import * as React from "react";
-
 function NavBar() {
   return (
     <nav
@@ -11,7 +9,7 @@ function NavBar() {
         <a className="navbar-item">
           <img
             className="logo"
-            src={require("./../../assets/logo.jpg")}
+            src={require("./../assets/logo.jpg")}
             width="35"
             height="50"
           ></img>
