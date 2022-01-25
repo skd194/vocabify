@@ -2,20 +2,27 @@ import React, { Component } from "react";
 import Joi, { ObjectSchema } from "joi";
 import _ from "lodash";
 import Input from "./input";
+import TextArea from "./textArea";
+import { JsObject } from "./types/Object";
 
-export interface IFormContent {
-  data: { [key: string]: any };
+export interface IFormContent<D extends JsObject<string>> {
+  data: D;
   errors: { [key: string]: string };
 }
 
-abstract class Form<P> extends Component<P, IFormContent> {
-  state: IFormContent;
-
-  constructor(props: P) {
+abstract class Form<P, D extends JsObject<string>> extends Component<
+  P,
+  IFormContent<D>
+> {
+  constructor(props: P, formData: D) {
     super(props);
-    this.state = { data: {}, errors: {} };
+    this.state = {
+      data: formData,
+      errors: {},
+    };
   }
 
+  state: IFormContent<D>;
   abstract readonly schema: ObjectSchema<any>;
   abstract doSubmit(): void;
 
@@ -62,8 +69,8 @@ abstract class Form<P> extends Component<P, IFormContent> {
     const errorMessage = this.validateProperty(target);
     if (errorMessage) errors[target.name] = errorMessage;
     else delete errors[target.name];
-    const data: { [key: string]: string } = { ...this.state.data };
-    data[target.name] = target.value;
+    const data: D = { ...this.state.data };
+    _.set(data, target.name, target.value);
     this.setState({ data, errors });
   };
 
@@ -86,6 +93,20 @@ abstract class Form<P> extends Component<P, IFormContent> {
         value={data[name]}
         onChange={this.handleChange}
       ></Input>
+    );
+  }
+
+  renderTextArea(name: string, label: string, className: string) {
+    const { data, errors } = this.state;
+    return (
+      <TextArea
+        name={name}
+        label={label}
+        error={errors[name]}
+        value={data[name]}
+        className={className}
+        onChange={this.handleChange}
+      ></TextArea>
     );
   }
 }
