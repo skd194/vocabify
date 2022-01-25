@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Dashboard from "../dashboard";
 import Users from "../hooks/Users";
 import { ICard } from "../models/card";
