@@ -1,7 +1,7 @@
 function NavBar() {
   return (
     <nav
-      className="navbar navbar-more"
+      className="navbar is-primary-bg"
       role="navigation"
       aria-label="main navigation"
     >

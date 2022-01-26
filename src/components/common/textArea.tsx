@@ -18,9 +18,9 @@ const TextArea = ({
   };
 
   return (
-    <>
-      <div className="field">
-        <input
+    <div className="field">
+      <div className="control">
+        <textarea
           id={name}
           name={name}
           placeholder={`Enter ${label.toLowerCase()}`}
@@ -33,7 +33,7 @@ const TextArea = ({
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

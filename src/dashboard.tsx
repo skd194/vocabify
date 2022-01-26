@@ -2,7 +2,7 @@ import { mdiCardPlus } from "@mdi/js";
 import Icon from "@mdi/react";
 import * as React from "react";
 import { ICard } from "./models/card";
-import Card from "./card";
+import NoteForm, { NoteFormContent } from "./components/note/noteForm";
 
 interface IDashboardProps {
   cards: ICard[];
@@ -103,9 +103,9 @@ function Dashboard({ cards }: IDashboardProps) {
           <div className="tile is-child">
             <div className="columns">
               <div className="column is-full">
-                {cards.map((card) => (
-                  <Card card={card}></Card>
-                ))}
+                {cards.map((card) => {
+                  return <NoteForm key={10} data={NoteFormContent.Empty}></NoteForm>;
+                })}
               </div>
             </div>
           </div>

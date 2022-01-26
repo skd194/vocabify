@@ -5,24 +5,34 @@ import Input from "./input";
 import TextArea from "./textArea";
 import { JsObject } from "./types/Object";
 
-export interface IFormContent<D extends JsObject<string>> {
-  data: D;
+export interface IFormContent<
+  TFormContent extends JsObject<string>,
+  TFormState
+> {
+  data: TFormContent;
+  formState: TFormState;
   errors: { [key: string]: string };
 }
 
-abstract class Form<P, D extends JsObject<string>> extends Component<
-  P,
-  IFormContent<D>
-> {
-  constructor(props: P, formData: D) {
+abstract class Form<
+  TProps,
+  TFormContent extends JsObject<string>,
+  TFormState
+> extends Component<TProps, IFormContent<TFormContent, TFormState>> {
+  constructor(
+    props: TProps,
+    initialFormContent: TFormContent,
+    initialFormState: TFormState
+  ) {
     super(props);
     this.state = {
-      data: formData,
+      data: initialFormContent,
       errors: {},
+      formState: initialFormState,
     };
   }
 
-  state: IFormContent<D>;
+  state: IFormContent<TFormContent, TFormState>;
   abstract readonly schema: ObjectSchema<any>;
   abstract doSubmit(): void;
 
@@ -69,14 +79,14 @@ abstract class Form<P, D extends JsObject<string>> extends Component<
     const errorMessage = this.validateProperty(target);
     if (errorMessage) errors[target.name] = errorMessage;
     else delete errors[target.name];
-    const data: D = { ...this.state.data };
+    const data: TFormContent = { ...this.state.data };
     _.set(data, target.name, target.value);
     this.setState({ data, errors });
   };
 
   renderButton(label: string) {
     return (
-      <button className="btn btn-primary" disabled={this.validate() !== null}>
+      <button className="button" disabled={this.validate() !== null}>
         {label}
       </button>
     );
