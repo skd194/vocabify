@@ -14,7 +14,7 @@ function Dashboard({ cards }: IDashboardProps) {
   ];
 
   return (
-    <React.Fragment>
+    <>
       <div className="tile is-ancestor">
         <div
           className="tile is-2 box"
@@ -90,10 +90,73 @@ function Dashboard({ cards }: IDashboardProps) {
           <div className="tile is-child">
             <div className="columns">
               <div className="column is-full">
-                <div className="box">
+                <div className="box" style={{height: "80vh", overflowY:"scroll"}}>
                   <h3>Friendly Conversation</h3>
                   <hr />
-                  <ul></ul>
+                  <ul>
+                    <li>
+                      <div className="box-light">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing
+                        elit. Doloremque magni repellat pariatur ullam quibusdam
+                        id iure hic unde molestiae possimus autem accusamus
+                        officiis error repudiandae, totam consequatur architecto
+                        reprehenderit temporibus.
+                      </div>
+                    </li>
+                    <li>
+                      <div className="box-light">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing
+                        elit. Vel, provident commodi. Error, eaque? Nihil,
+                        quidem voluptatum doloremque voluptates ipsum explicabo
+                        expedita impedit delectus tempore adipisci earum illo
+                        quasi. Corporis alias eaque sequi totam, sint enim! Sit
+                        debitis adipisci distinctio est facere, corporis quo
+                        possimus non dolore rerum, totam error ratione!
+                      </div>
+                    </li>
+                    <li>
+                      <div className="box-light">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Sunt, quidem.
+                      </div>
+                    </li>
+                    <li>
+                      <div className="box-light">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Sunt, quidem.
+                      </div>
+                    </li>
+                    <li>
+                      <div className="box-light">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Sunt, quidem.
+                      </div>
+                    </li>
+                    <li>
+                      <div className="box-light">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Sunt, quidem.
+                      </div>
+                    </li>
+                    <li>
+                      <div className="box-light">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Sunt, quidem.
+                      </div>
+                    </li>
+                    <li>
+                      <div className="box-light">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Sunt, quidem.
+                      </div>
+                    </li>
+                    <li>
+                      <div className="box-light">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Sunt, quidem.
+                      </div>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -103,15 +166,13 @@ function Dashboard({ cards }: IDashboardProps) {
           <div className="tile is-child">
             <div className="columns">
               <div className="column is-full">
-                {cards.map((card) => {
-                  return <NoteForm key={10} data={NoteFormContent.Empty}></NoteForm>;
-                })}
+                <NoteForm data={NoteFormContent.Empty}></NoteForm>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 }
 
