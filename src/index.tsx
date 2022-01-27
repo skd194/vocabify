@@ -1,17 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './layout/App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./layout/App";
+import reportWebVitals from "./reportWebVitals";
 
-import 'bulma/css/bulma.css';
-import './layout/styles.css';
-
+import "bulma/css/bulma.css";
+import "@creativebulma/bulma-tooltip/dist/bulma-tooltip.css";
+import "./layout/styles.css";
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

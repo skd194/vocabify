@@ -84,7 +84,7 @@ abstract class Form<
     this.setState({ data, errors });
   };
 
-  renderButton(label: string) {
+  renderSubmitButton(label: string) {
     return (
       <button className="button" disabled={this.validate() !== null}>
         {label}
@@ -92,7 +92,12 @@ abstract class Form<
     );
   }
 
-  renderInput(name: string, label: string, type: string) {
+  renderInput(
+    name: string,
+    label: string,
+    type: string,
+    className: string = ""
+  ) {
     const { data, errors } = this.state;
     return (
       <Input
@@ -101,12 +106,13 @@ abstract class Form<
         error={errors[name]}
         type={type}
         value={data[name]}
+        className={className}
         onChange={this.handleChange}
       ></Input>
     );
   }
 
-  renderTextArea(name: string, label: string, className: string) {
+  renderTextArea(name: string, label: string, className: string = "") {
     const { data, errors } = this.state;
     return (
       <TextArea

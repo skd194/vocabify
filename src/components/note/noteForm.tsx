@@ -1,15 +1,6 @@
 import Joi from "joi";
 import Icon from "@mdi/react";
-import {
-  mdiArrowBottomLeftBoldBoxOutline,
-  mdiArrowLeft,
-  mdiArrowRight,
-  mdiArrowRightCircle,
-  mdiArrowUUpLeftBold,
-  mdiPlus,
-  mdiPlusBox,
-  mdiPlusCircle,
-} from "@mdi/js";
+import { mdiArrowRightCircle, mdiPlusCircle } from "@mdi/js";
 import Form from "../common/form";
 import React, { Component } from "react";
 import { JsObject } from "../common/types/Object";
@@ -39,8 +30,14 @@ export class NoteFormContent implements INoteFormContent {
   ) {}
 
   static Empty = new NoteFormContent("", "", [
-    { word: "cram", definition: ["completely fill (a place or container) to the point of overflowing  asjdhg jhasgd jhags jhdgajsdjhasgdjhg."] },
-    { word: "tread", definition: ["walk in a specified way."] },
+    {
+      id: "1",
+      word: "cram",
+      definition: [
+        "completely fill (a place or container) to the point of overflowing  asjdhg jhasgd jhags jhdgajsdjhasgdjhg.",
+      ],
+    },
+    { id: "3", word: "tread", definition: ["walk in a specified way."] },
   ]);
 }
 
@@ -61,10 +58,10 @@ class NoteForm extends Form<NoteFormProps, INoteFormContent, NoteFormState> {
     words: Joi.array().required(),
   });
 
-  handleAddWord = (enable: boolean) => {
-    const formState = { ...this.state.formState };
-    formState.addWordEnabled = enable;
-    this.setState({ formState });
+  handleWordSection = (enable: boolean) => {
+    this.setState({
+      formState: { ...this.state.formState, addWordEnabled: enable },
+    });
   };
 
   doSubmit(): void {
@@ -117,8 +114,8 @@ class NoteForm extends Form<NoteFormProps, INoteFormContent, NoteFormState> {
           <div className="tile is-child">
             {this.renderButtonWithIcon(
               mdiPlusCircle,
-              "Add word to dictionary",
-              () => this.handleAddWord(true)
+              "Add new word to dictionary",
+              () => this.handleWordSection(true)
             )}
           </div>
         </div>
@@ -137,20 +134,33 @@ class NoteForm extends Form<NoteFormProps, INoteFormContent, NoteFormState> {
         <div className="tile is-parent is-12">
           <div className="tile is-child">
             {this.renderButtonWithIcon(mdiArrowRightCircle, "Back", () =>
-              this.handleAddWord(false)
+              this.handleWordSection(false)
             )}
           </div>
         </div>
         <div className="tile is-parent is-12 is-vertical">
           <div className="tile is-child">
-            <WordForm data={WordFormContent.Empty} onAddNote={hand} ></WordForm>
+            <WordForm
+              data={WordFormContent.Empty}
+              addWord={this.handleAddWord}
+            ></WordForm>
           </div>
         </div>
       </>
     );
   }
 
-  handleAdd
+  handleAddWord = (word: IWordFormContent): void => {
+    const words = [...this.state.data.words];
+    words.push({
+      id: (Math.random() * -1).toString(),
+      word: word.word,
+      definition: [word.definition],
+    });
+    const data = { ...this.state.data, words };
+    const formState = { ...this.state.formState, addWordEnabled: false };
+    this.setState({ data, formState });
+  };
 
   renderWordSection() {
     return this.state.formState.addWordEnabled

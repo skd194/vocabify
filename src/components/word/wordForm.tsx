@@ -1,12 +1,15 @@
 import Joi from "joi";
-import React, { Component } from "react";
+import React from "react";
 import Form from "../common/form";
 import { JsObject } from "../common/types/Object";
 
 export class WordFormContent implements IWordFormContent {
   constructor(public word: string, public definition: string) {}
 
-  static Empty: WordFormContent = new WordFormContent("", "");
+  static Empty: WordFormContent = new WordFormContent(
+    "New Word",
+    "hello, I am new word"
+  );
 }
 
 export interface IWordFormContent extends JsObject {
@@ -16,7 +19,7 @@ export interface IWordFormContent extends JsObject {
 
 interface WordFormProps {
   data: IWordFormContent;
-  addWord: () => void
+  addWord: (word: IWordFormContent) => void;
 }
 
 class WordForm extends Form<WordFormProps, IWordFormContent, {}> {
@@ -35,13 +38,24 @@ class WordForm extends Form<WordFormProps, IWordFormContent, {}> {
 
   render() {
     return (
-      <div className="box">
-        <form>
+      <>
+        <div
+          className="box-light"
+          style={{ overflowX: "auto", overflowY: "hidden" }}
+        >
+          <h4>Add Word</h4>
           {this.renderInput("word", "Word", "text")}
-          {this.renderTextArea("definition", "Definition", "is-medium")}
-          {this.renderButton("Add")}
-        </form>
-      </div>
+          {this.renderTextArea("definition", "Definition")}
+          <button
+            type="button"
+            className="button is-pulled-right is-rounded"
+            onClick={() => this.props.addWord(this.state.data)}
+            disabled={this.validate() !== null}
+          >
+            Add
+          </button>
+        </div>
+      </>
     );
   }
 }

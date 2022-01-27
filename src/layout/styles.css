@@ -20,10 +20,36 @@ code {
   border-radius: 25px;
 }
 
+input.is-danger,
+textarea.is-danger {
+  border-color: red !important;
+  box-shadow: 0 0 2px red !important;
+}
+
 :focus {
   outline: none !important;
   border-color: darkorange !important;
-  box-shadow: 0 0 10px darkorange !important;
+  box-shadow: 0 0 5px darkorange !important;
+}
+
+.label-06 {
+  font-style: italic;
+  font-family: Cursive;
+  max-width: 100px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 0.8rem;
+  padding-right: 1px;
+  font-weight: bold;
+}
+
+.button {
+  border-color: darkorange;
+}
+
+.button:hover {
+  border: 2px solid darkorange;
 }
 
 ::-webkit-scrollbar {
@@ -39,4 +65,20 @@ code {
   background-color: orange; /* color of the scroll thumb */
   border-radius: 20px; /* roundness of the scroll thumb */
   border: 0.5px solid rgb(226, 225, 222); /* creates padding around scroll thumb */
+}
+
+.box-light {
+  border: 1px solid rgb(245, 242, 238);
+  padding: 15px 20px;
+  box-shadow: 0 0 10px rgb(245, 245, 240);
+  border-radius: 20px;
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+    font-family: cursive;
+}
+
+::placeholder {
+  font-family: cursive;
 }

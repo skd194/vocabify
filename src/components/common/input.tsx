@@ -4,15 +4,21 @@ export interface InputProps {
   name: string;
   label: string;
   error: string;
+  className: string;
 }
 
 const Input = ({
   name,
   label,
   error,
+  className,
   ...rest
 }: InputProps & { [key: string]: string | ((e: any) => void) }) => {
-  const getClasses = (error: string) => (error ? "input is-danger" : "input");
+  const getClasses = (error: string, additionalClass: string) => {
+    const inputClasses = `input ${additionalClass}`;
+    return error ? `${inputClasses} is-danger` : inputClasses;
+  };
+
   return (
     <>
       <div className="field">
@@ -20,7 +26,7 @@ const Input = ({
           id={name}
           name={name}
           placeholder={`Enter ${label.toLowerCase()}`}
-          className={getClasses(error)}
+          className={getClasses(error, className)}
           {...rest}
         />
         {error && (
