@@ -74,11 +74,17 @@ textarea.is-danger {
   border-radius: 10px;
 }
 
-h1, h2, h3,
-h4, h5, h6 {
-    font-family: cursive;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: cursive;
 }
 
 ::placeholder {
   font-family: cursive;
 }
+
+/* style={{ height: "85vh", overflow: "auto", overflowY: "scroll" }} */

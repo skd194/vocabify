@@ -170,7 +170,7 @@ class NoteForm extends Form<NoteFormProps, INoteFormContent, NoteFormState> {
 
   render() {
     return (
-      <div>
+      <div style={{ height: "80vh" }}>
         <div className="card">
           <div className="card-content">
             <div className="content">
