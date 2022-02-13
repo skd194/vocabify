@@ -2,10 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./layout/App";
 import reportWebVitals from "./reportWebVitals";
+import logger from "./services/logService";
 
 import "bulma/css/bulma.css";
 import "@creativebulma/bulma-tooltip/dist/bulma-tooltip.css";
+import "react-toastify/dist/ReactToastify.css";
 import "./layout/styles.css";
+
+logger.init();
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ToastContainer } from 'react-toastify';
 import Dashboard from "../dashboard";
 import Users from "../hooks/Users";
 import { ICard } from "../models/card";
@@ -10,7 +11,7 @@ function App() {
   const cards: ICard[] = [
     {
       id: 25,
-      name: "General sentences",
+      name: "General ....",
       notes: [
         {
           id: 5666,
@@ -257,6 +258,7 @@ function App() {
   return (
     <>
       <NavBar></NavBar>
+      <ToastContainer/>
       <div className="container" style={{ marginTop: 30 }}>
         <Dashboard cards={cards}></Dashboard>
         {/* <Users></Users> */}
