@@ -7,5 +7,7 @@ namespace Application.DataAccessContract.Repository
     public interface IUserRepository : IRepository<User>
     {
         Task<Result<User>> GetUserAsync(string username);
+
+        Task<bool> AnyUserWithUsernameExists(string username);
     }
 }

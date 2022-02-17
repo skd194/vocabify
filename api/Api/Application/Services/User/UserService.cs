@@ -20,6 +20,9 @@ namespace Application.Services
 
         public async Task<Result<NewUserResponseDto>> CreateUser(NewUserDto dto)
         {
+            if (await _unitOfWork.UserRepository.AnyUserWithUsernameExists(dto.Username))
+                return Result.Fail<NewUserResponseDto>("User with same username already exists.");
+
             var user = User.NewUser(dto.Username, dto.Password);
 
             _unitOfWork.UserRepository.Add(user);

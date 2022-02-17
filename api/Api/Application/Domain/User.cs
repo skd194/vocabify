@@ -11,7 +11,7 @@ namespace Application.Domain
             using var hmac = new HMACSHA512();
             return new User(
                 0,
-                username,
+                username.ToLower(),
                 ComputePasswordHash(hmac, password),
                 hmac.Key);
         }
