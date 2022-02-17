@@ -286,7 +286,4 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 
-Fz.Configuration/Persistence/Engine.db
-Fz.Configuration/Persistence/EngineLog.db
-Fz.Configuration/Api/ip-whitelists.json
-Fz.Configuration/logs
+*/logs/

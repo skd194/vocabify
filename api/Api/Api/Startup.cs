@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Persistence;
 using System.Text;
 
 namespace Api
@@ -23,11 +24,14 @@ namespace Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers().AddNewtonsoftJson();
+            services
+                .AddControllers()
+                .AddNewtonsoftJson()
+                .ConfigureApiBehaviorOptions(opt => opt.InvalidModelStateResponseFactory = context => context.ToBadRequestObjectResult());
 
             services.RegisterDependencies(Configuration);
 
-            //DbConstrainHandler.Register();
+            DbConstrainHandler.Register();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

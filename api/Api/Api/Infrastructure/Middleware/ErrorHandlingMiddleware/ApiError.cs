@@ -9,11 +9,14 @@ namespace Api.Infrastructure
     public class ApiError
     {
         #region factory methods
+        public static ApiError ModelStateError(Dictionary<string, IEnumerable<string>> errors) =>
+            new ApiError(HttpStatusCode.BadRequest, "ModelStateError", errors);
+
         public static ApiError BadRequest(string errorMessage) =>
-            new ApiError(HttpStatusCode.BadRequest, "api-error", errorMessage);
+        new ApiError(HttpStatusCode.BadRequest, "InternalError", errorMessage);
 
         public static ApiError Unauthorized(string errorMessage) =>
-            new ApiError(HttpStatusCode.Unauthorized, "api-error", errorMessage);
+            new ApiError(HttpStatusCode.Unauthorized, "UnAuthorized", errorMessage);
 
         public static ApiError InternalServerErrorResponse() =>
             new ApiError(HttpStatusCode.InternalServerError,
@@ -27,24 +30,28 @@ namespace Api.Infrastructure
 
         #endregion
 
-        private ApiError(HttpStatusCode statusCode, string errorKey, string errorMessage)
-            : this(statusCode, new Dictionary<string, string> { { errorKey, errorMessage } })
+
+
+        private ApiError(HttpStatusCode statusCode, string type, string errorMessage)
+            : this(statusCode, type, new Dictionary<string, IEnumerable<string>> { { "error", new[] { errorMessage } } })
         {
         }
 
-        public ApiError(
+        private ApiError(
             HttpStatusCode statusCode,
-            Dictionary<string, string> errors)
+            string type,
+            Dictionary<string, IEnumerable<string>> errors)
         {
             Id = Guid.NewGuid().ToString();
             StatusCode = statusCode;
             Errors = errors;
+            Type = type;
         }
 
         public string Id { get; }
         public HttpStatusCode StatusCode { get; }
-        public Dictionary<string, string> Errors { get; }
-        public string Detail { get; set; } = string.Empty;
+        public Dictionary<string, IEnumerable<string>> Errors { get; }
+        public string Type { get; }
         public override string ToString() =>
             JsonConvert.SerializeObject(this,
                 new JsonSerializerSettings

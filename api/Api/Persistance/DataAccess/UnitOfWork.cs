@@ -1,11 +1,13 @@
-﻿using System;
-using System.Threading.Tasks;
-using Application.DataAccessContract;
+﻿using Application.DataAccessContract;
+using Application.DataAccessContract.Repository;
 using Application.Shared;
+using Persistence.DataAccess.Repository;
+using System;
+using System.Threading.Tasks;
 
 namespace Persistence.DataAccess
 {
-    public class UnitOfWork: IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly DataContext _dbContext;
         private readonly IWriteDbErrorHandler _writeDbErrorHandler;
@@ -16,13 +18,16 @@ namespace Persistence.DataAccess
         {
             _dbContext = dbContext;
             _writeDbErrorHandler = writeDbErrorHandler;
+            UserRepository = new UserRepository(dbContext);
         }
+
+        public IUserRepository UserRepository { get; }
 
         public async Task<Result> Complete()
         {
             try
             {
-                var result =  await _dbContext.SaveChangesAsync();
+                var result = await _dbContext.SaveChangesAsync();
                 return result > 0
                     ? Result.Ok()
                     : Result.Fail("No data saved to the database");

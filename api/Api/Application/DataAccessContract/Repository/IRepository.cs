@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Application.DataAccessContract
+namespace Application.DataAccessContract.Repository
 {
     public interface IRepository<TEntity>
     {
-        Task<TEntity> SingleAsync();
+        Task<TEntity> SingleAsync(Expression<Func<TEntity, bool>> predicate);
 
         void Add(TEntity entity);
 

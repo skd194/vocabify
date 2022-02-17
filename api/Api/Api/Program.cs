@@ -19,13 +19,14 @@ namespace Api
 
             try
             {
-                Log.Information("Starting web host");
+                Log.Information("Starting webhost...");
                 Initializer.Seed(configuration);
                 CreateHostBuilder(args).Build().Run();
+                Log.Information("Webhost up & running");
             }
             catch (Exception ex)
             {
-                Log.Fatal(ex, "Host terminated unexpectedly");
+                Log.Fatal(ex, "Host terminated unexpectedly. Read logs to know more details");
             }
             finally
             {
