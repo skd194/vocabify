@@ -1,6 +1,7 @@
-﻿using System;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Logging;
+using MySqlConnector;
+using System;
 
 namespace Api.Infrastructure
 {
@@ -8,12 +9,14 @@ namespace Api.Infrastructure
     {
         internal static void UseErrorHandlingMiddleware(this IApplicationBuilder builder)
         {
-            var options = new ApiExceptionOptions((context, exception, error) =>
+            var options = new ApiExceptionOptions((context, exception) => exception switch
             {
-                //if (exception.GetType().Name == typeof(SqlException).Name)
-                //{
-                //    error.Detail = "Exception was a database exception";
-                //}
+                // handle other system defined exceptions
+                _ => ApiError.InternalServerErrorResponse(
+                    exception.GetType().Name == typeof(MySqlException).Name
+                        ? "DatabaseError"
+                        : "InternalServerError",
+                    exception)
             }, exception =>
             {
                 if (exception.Message.StartsWith("cannot open database", StringComparison.InvariantCultureIgnoreCase) ||

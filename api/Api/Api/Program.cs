@@ -14,15 +14,12 @@ namespace Api
         public static void Main(string[] args)
         {
             var configuration = GetConfiguration();
-
             Log.Logger = GetLogger(configuration);
-
             try
             {
-                Log.Information("Starting webhost...");
+                Log.Information("Starting web host...");
                 Initializer.Seed(configuration);
                 CreateHostBuilder(args).Build().Run();
-                Log.Information("Webhost up & running");
             }
             catch (Exception ex)
             {

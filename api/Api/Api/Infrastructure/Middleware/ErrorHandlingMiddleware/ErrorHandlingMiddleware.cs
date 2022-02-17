@@ -42,18 +42,7 @@ namespace Api.Infrastructure
             ILogger logger,
             ApiExceptionOptions options)
         {
-            var error = exception switch
-            {
-                // custom exception handling
-
-#if DEBUG
-                _ => ApiError.InternalServerErrorResponse(exception),
-#else
-                _ => ApiError.InternalServerErrorResponse(),
-#endif
-            };
-
-            options.AddResponseDetails?.Invoke(httpContext, exception, error);
+            var error = options.BuildErrorResponse.Invoke(httpContext, exception);
 
             using (logger.BeginScope(ScopeInformation.HostScopeInfo))
             using (logger.BeginScope(ScopeInformation.GetUserScopeInfo(httpContext)))

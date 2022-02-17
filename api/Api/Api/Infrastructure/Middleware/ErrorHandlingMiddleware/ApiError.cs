@@ -18,17 +18,21 @@ namespace Api.Infrastructure
         public static ApiError Unauthorized(string errorMessage) =>
             new ApiError(HttpStatusCode.Unauthorized, "UnAuthorized", errorMessage);
 
-        public static ApiError InternalServerErrorResponse() =>
-            new ApiError(HttpStatusCode.InternalServerError,
-                "InternalServerError",
-                "Unexpected error occured. Please contact the support team and provide the id generated along with this response");
-
-        public static ApiError InternalServerErrorResponse(Exception exception) =>
-            new ApiError(HttpStatusCode.InternalServerError,
-                "InternalServerError",
+        public static ApiError InternalServerErrorResponse(string type, Exception exception)
+        {
+#if DEBUG
+            return new ApiError(
+                HttpStatusCode.InternalServerError,
+                type,
                 exception.Message);
+#else
+            return new ApiError(HttpStatusCode.InternalServerError,
+                type,
+                "Unexpected error occured. Please contact the support team and provide the id generated along with this response");
+#endif
+        }
 
-        #endregion
+#endregion
 
 
 

@@ -7,14 +7,14 @@ namespace Api.Infrastructure
     internal class ApiExceptionOptions
     {
         internal ApiExceptionOptions(
-            Action<HttpContext, Exception, ApiError> addResponseDetails,
+            Func<HttpContext, Exception, ApiError> buildErrorResponse,
             Func<Exception, LogLevel> determineLogLevel)
         {
-            AddResponseDetails = addResponseDetails;
+            BuildErrorResponse = buildErrorResponse;
             DetermineLogLevel = determineLogLevel;
         }
 
-        public Action<HttpContext, Exception, ApiError> AddResponseDetails { get; }
+        public Func<HttpContext, Exception, ApiError> BuildErrorResponse { get; }
         public Func<Exception, LogLevel> DetermineLogLevel { get; }
     }
 }
