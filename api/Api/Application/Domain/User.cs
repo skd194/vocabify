@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Application.Domain
 {
-    public class User: AppEntity
+    public class User: AppEntity, IAnonymous
     {
         public static User NewUser(string username, string password)
         {

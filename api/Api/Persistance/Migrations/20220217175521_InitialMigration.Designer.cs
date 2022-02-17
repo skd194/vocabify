@@ -9,7 +9,7 @@ using Persistence.DataAccess;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220216164706_InitialMigration")]
+    [Migration("20220217175521_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,6 +25,7 @@ namespace Persistence.Migrations
                         .HasColumnType("int");
 
                     b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
                     b.Property<byte[]>("PasswordHash")

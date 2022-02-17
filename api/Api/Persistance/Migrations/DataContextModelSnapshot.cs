@@ -23,6 +23,7 @@ namespace Persistence.Migrations
                         .HasColumnType("int");
 
                     b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
                     b.Property<byte[]>("PasswordHash")

@@ -4,6 +4,7 @@ using Application.Shared;
 using Persistence.DataAccess.Repository;
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace Persistence.DataAccess
 {
@@ -11,6 +12,7 @@ namespace Persistence.DataAccess
     {
         private readonly DataContext _dbContext;
         private readonly IWriteDbErrorHandler _writeDbErrorHandler;
+        private readonly ILogger<UnitOfWork> _logger;
 
         public UnitOfWork(
             DataContext dbContext,
@@ -35,12 +37,10 @@ namespace Persistence.DataAccess
             catch (Exception exception)
             {
                 return _writeDbErrorHandler.IsForeignKeyError(exception)
-                    ? Result.Fail(Error.New(
-                        "ForeignKeyConstraintError",
-                        "Invalid Operation. Entity can't be modified since it is related to other entities"))
+                    ? Result.Fail("Invalid Operation. Entity can't be modified since it is related to other entities")
                     : _writeDbErrorHandler.TryGetConstraintError(exception, out var message)
-                        ? Result.Fail(Error.New("DbConstraintError", message))
-                        : Result.Ok();
+                        ? Result.Fail(message)
+                        : Result.Fail("Something went wrong while writing to database");
             }
         }
     }

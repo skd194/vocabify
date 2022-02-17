@@ -16,7 +16,7 @@ namespace Persistence.DataAccess
             IServiceContext serviceContext)
             : base(options)
         {
-            ChangeTracker.LazyLoadingEnabled = true;
+            ChangeTracker.LazyLoadingEnabled = false;
             _serviceContext = serviceContext;
         }
 
@@ -32,7 +32,7 @@ namespace Persistence.DataAccess
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             await using var txn = await Database.BeginTransactionAsync(cancellationToken);
-            ChangeTracker.Entries().UpdateEntityBase(_serviceContext.UserId);
+            ChangeTracker.Entries().UpdateEntityBase(_serviceContext);
             var result = await base.SaveChangesAsync(cancellationToken);
             await txn.CommitAsync(cancellationToken);
             return result;
@@ -41,7 +41,7 @@ namespace Persistence.DataAccess
         public override int SaveChanges()
         {
             var txn = Database.BeginTransaction();
-            ChangeTracker.Entries().UpdateEntityBase(_serviceContext.UserId);
+            ChangeTracker.Entries().UpdateEntityBase(_serviceContext);
             var result = base.SaveChanges();
             txn.CommitAsync();
             return result;

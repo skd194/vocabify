@@ -31,6 +31,7 @@ namespace Persistence
             if (!_args.SkipIdentityConfiguration)
             {
                 builder.HasKey(e => new {e.AccountId, e.Id});
+                builder.Property(x => x.Id).ValueGeneratedOnAdd();
             }
 
             builder.Property(t => t.Id).IsRequired();

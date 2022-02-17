@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Application;
+using Application.AppContracts;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Persistence.DataAccess
@@ -25,15 +26,15 @@ namespace Persistence.DataAccess
                 entity.SetTableName(entity.DisplayName());
             }
         }
-        internal static void UpdateEntityBase(this IEnumerable<EntityEntry> entries, long userId)
+        internal static void UpdateEntityBase(this IEnumerable<EntityEntry> entries, IServiceContext serviceContext)
         {
             foreach (var entity in entries.Where(entry =>
                 entry.State == EntityState.Added ||
                 entry.State == EntityState.Modified))
             {
-                if (entity.Entity is IAppEntityBase entityBase)
+                if (entity.Entity is IAppEntityBase entityBase && !(entity.Entity is IAnonymous))
                 {
-                    entityBase.UpdateBase(userId, DateTime.UtcNow);
+                    entityBase.UpdateBase(serviceContext.UserId, DateTime.UtcNow);
                 }
 
                 if (entity.Entity is IAccount accountEntity)
