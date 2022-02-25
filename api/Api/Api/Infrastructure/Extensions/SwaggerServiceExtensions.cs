@@ -13,7 +13,7 @@ namespace Api.Infrastructure
                 opts.CustomSchemaIds(x => x.FullName);
                 opts.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "<project_name>.Api",
+                    Title = "Vocabify.Api",
                     Version = "v1"
                 });
 
@@ -41,7 +41,7 @@ namespace Api.Infrastructure
             app.UseSwagger();
             app.UseSwaggerUI(opts =>
             {
-                opts.SwaggerEndpoint("/swagger/v1/swagger.json", "<project_name>_v1");
+                opts.SwaggerEndpoint("/swagger/v1/swagger.json", "Vocabify_v1");
                 opts.RoutePrefix = string.Empty;
             });
             return app;
