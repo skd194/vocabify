@@ -1,5 +1,4 @@
-﻿using Application.ServiceContracts;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
@@ -7,12 +6,6 @@ namespace Api.Controllers
     [ApiController]
     public class SampleController : ControllerBase
     {
-        private readonly IUserService _userService;
-
-        public SampleController(IUserService userService)
-        {
-            _userService = userService;
-        }
 
         [HttpGet("{id}")]
         public  object Get(int id)
