@@ -1,11 +1,49 @@
-import * as React from 'react';
-import { ToastContainer } from 'react-toastify';
+import * as React from "react";
+import { Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import Dashboard from "../dashboard";
-import Users from "../hooks/Users";
 import { ICard } from "../models/card";
 import NavBar from "./NavBar";
+import AuthRoute from "./../components/common/authRoute";
+import LoginForm from "../components/auth/loginForm";
 
-function App() {
+interface AppProps {}
+
+interface AppState {}
+
+class App extends React.Component<AppProps, AppState> {
+  state = {};
+
+  cards: ICard[] = [];
+
+  render() {
+    return (
+      <>
+        <NavBar></NavBar>
+        <ToastContainer />
+        <div className="container" style={{ marginTop: 30 }}>
+          {/* <Dashboard cards={this.cards}></Dashboard> */}
+          {/* <Users></Users> */}
+          <LoginForm></LoginForm>
+        </div>
+      </>
+    );
+  }
+
+  authRoute(path: string, element: React.ReactNode) {
+    return (
+      <Route path={path} element={<AuthRoute>{element}</AuthRoute>}></Route>
+    );
+  }
+
+  anonymousRoute(path: string, element: React.ReactNode) {
+    return <Route path={path} element={element}></Route>;
+  }
+}
+
+export default App;
+
+function App2() {
   // const [cards, setCards] = useState<ICard[]>([]);
 
   const cards: ICard[] = [
@@ -258,7 +296,7 @@ function App() {
   return (
     <>
       <NavBar></NavBar>
-      <ToastContainer/>
+      <ToastContainer />
       <div className="container" style={{ marginTop: 30 }}>
         <Dashboard cards={cards}></Dashboard>
         {/* <Users></Users> */}
@@ -266,5 +304,3 @@ function App() {
     </>
   );
 }
-
-export default App;
