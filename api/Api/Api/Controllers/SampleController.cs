@@ -2,7 +2,7 @@
 
 namespace Api.Controllers
 {
-    [Route("sample")]
+    [Route("api/sample")]
     [ApiController]
     public class SampleController : ControllerBase
     {

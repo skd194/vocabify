@@ -1,27 +1,15 @@
 import Joi from "joi";
 import Form from "../common/form";
-import { JsObject } from "../common/types/Object";
+import auth from "./../../services/auth/authService";
+import * as models from "./models";
 
-class LoginFormContent implements ILoginFormContent {
+class LoginForm extends Form<
+  models.LoginFormProps,
+  models.ILoginFormContent,
+  {}
+> {
   constructor() {
-    this.username = "";
-    this.password = "";
-  }
-
-  username: string;
-  password: String;
-}
-
-interface LoginFormProps {}
-
-interface ILoginFormContent extends JsObject {
-  username: string;
-  password: String;
-}
-
-class LoginForm extends Form<LoginFormProps, ILoginFormContent, {}> {
-  constructor() {
-    super({}, new LoginFormContent(), {});
+    super({}, new models.LoginFormContent(), {});
   }
 
   schema = Joi.object({
@@ -29,28 +17,31 @@ class LoginForm extends Form<LoginFormProps, ILoginFormContent, {}> {
     password: Joi.string().label("Password").required(),
   });
 
-  doSubmit(): void {
-    throw new Error("Method not implemented.");
+  async doSubmit() {
+    debugger;
+    const content = this.state.data;
+
+    var p = await auth.login({
+      username: content.username,
+      password: content.password,
+    });
+
+    //throw new Error("Method not implemented.");
   }
 
   render() {
     return (
       <>
-        <div
-          className="box-light"
+        <form
+          className="box"
           style={{ overflowX: "auto", overflowY: "hidden" }}
+          onSubmit={this.handleSubmit}
         >
-          <h4>Login</h4>
+          <h4 className="title is-4">Login</h4>
           {this.renderInput("username", "Username", "text")}
           {this.renderInput("password", "Password", "password")}
-          <button
-            type="submit"
-            className="button is-pulled-right is-rounded"
-            disabled={this.validate() !== null}
-          >
-            Login
-          </button>
-        </div>
+          {this.renderSubmitButton("Login", "is-pulled-right")}
+        </form>
       </>
     );
   }

@@ -84,9 +84,13 @@ abstract class Form<
     this.setState({ data, errors });
   };
 
-  renderSubmitButton(label: string) {
+  renderSubmitButton(label: string, className: string = "") {
+    let buttonClassName = "button";
+    if (className) {
+      buttonClassName += ` ${className}`;
+    }
     return (
-      <button className="button" disabled={this.validate() !== null}>
+      <button className={buttonClassName} disabled={this.validate() !== null}>
         {label}
       </button>
     );

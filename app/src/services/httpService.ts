@@ -2,9 +2,14 @@ import axios, { AxiosError } from "axios";
 import { toast } from "react-toastify";
 import logger from "./logService";
 
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+
 axios.interceptors.response.use(
-  () => {},
+  () => {
+    debugger;
+  },
   (error: AxiosError) => {
+    debugger;
     const { response } = error;
 
     const expectedError =

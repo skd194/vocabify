@@ -81,12 +81,9 @@ namespace Api
 
             app.UseSwaggerDocumentation();
 
-            app.UsePathBase(new PathString("/api"));
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers().RequireAuthorization();
-
 #if !DEBUG
                 endpoints.MapFallbackToController("Index", "Fallback");
 #endif
