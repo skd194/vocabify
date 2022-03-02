@@ -6,19 +6,12 @@ const apiUrl = "/auth";
 const tokenKey = "token";
 
 const login = async (request: models.ILoginRequest) => {
-  debugger;
-  try {
-    const { data } = await http.post<models.ILoginResponse>(
-      `${apiUrl}/login`,
-      request
-    );
-    setToken(data.token);
-    return data;
-  } catch (ex) {
-
-    var a = ex;
-    debugger;
-  }
+  const { data } = await http.post<models.ILoginResponse>(
+    `${apiUrl}/login`,
+    request,
+  );
+  setToken(data.token);
+  return data;
 };
 
 const logout = () => {

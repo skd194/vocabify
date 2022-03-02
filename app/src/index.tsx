@@ -1,21 +1,24 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./layout/App";
-import reportWebVitals from "./reportWebVitals";
-import logger from "./services/logService";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './layout/App';
+import reportWebVitals from './reportWebVitals';
+import logger from './services/logService';
+import ErrorBoundary from './components/common/ErrorBoundary';
 
-import "bulma/css/bulma.css";
-import "@creativebulma/bulma-tooltip/dist/bulma-tooltip.css";
-import "react-toastify/dist/ReactToastify.css";
-import "./layout/styles.css";
+import 'bulma/css/bulma.css';
+import '@creativebulma/bulma-tooltip/dist/bulma-tooltip.css';
+import 'react-toastify/dist/ReactToastify.css';
+import './layout/styles.css';
 
 logger.init();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

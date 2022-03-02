@@ -5,19 +5,21 @@ import logger from "./logService";
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 axios.interceptors.response.use(
-  () => {
-    debugger;
-  },
+  () => { },
   (error: AxiosError) => {
-    debugger;
     const { response } = error;
-
+    if (!response) {
+      toast.error("Check your internet connection");
+      return Promise.reject(error);
+    }
     const expectedError =
-      response && response.status >= 400 && response.status < 500;
+      response &&
+      response.status >= 400 &&
+      response.status < 500;
 
     if (!expectedError) {
       logger.log(error);
-      toast.error("An unexpected error occured");
+      toast.error("An unexpected error occurred");
     }
     return Promise.reject(error);
   }
