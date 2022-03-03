@@ -1,7 +1,9 @@
+import FieldErrorMessage, { FieldError } from './fieldError';
+
 export interface TextAreaProps {
   name: string;
   label: string;
-  error: string;
+  error: FieldError;
   className: string;
 }
 
@@ -11,15 +13,17 @@ const TextArea = ({
   error,
   className,
   ...rest
-}: TextAreaProps & { [key: string]: string | ((e: any) => void) }) => {
-  const getClasses = (error: string, additionalClass: string) => {
+}: TextAreaProps & {
+  [key: string]: string | FieldError | ((e: any) => void);
+}) => {
+  const getClasses = (error: FieldError, additionalClass: string) => {
     const textAreaClass = `textarea ${additionalClass}`;
     return error ? `${textAreaClass} is-danger` : textAreaClass;
   };
 
   return (
-    <div className="field">
-      <div className="control">
+    <div className='field'>
+      <div className='control'>
         <textarea
           id={name}
           name={name}
@@ -27,11 +31,7 @@ const TextArea = ({
           className={getClasses(error, className)}
           {...rest}
         />
-        {error && (
-          <div style={{ color: "red", marginTop: 0, fontStyle: "italic" }}>
-            <small>{error}</small>
-          </div>
-        )}
+        <FieldErrorMessage error={error}></FieldErrorMessage>
       </div>
     </div>
   );

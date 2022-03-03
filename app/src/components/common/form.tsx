@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import Joi, { ObjectSchema } from "joi";
-import _ from "lodash";
-import Input from "./input";
-import TextArea from "./textArea";
-import { JsObject } from "./types/Object";
+import React, { Component } from 'react';
+import Joi, { ObjectSchema } from 'joi';
+import _ from 'lodash';
+import Input from './input';
+import TextArea from './textArea';
+import { JsObject } from './types/Object';
+import { FieldError } from './fieldError';
 
 export interface IFormContent<
   TFormContent extends JsObject<string>,
@@ -11,7 +12,7 @@ export interface IFormContent<
 > {
   data: TFormContent;
   formState: TFormState;
-  errors: { [key: string]: string };
+  errors: { [key: string]: FieldError };
 }
 
 abstract class Form<
@@ -43,9 +44,9 @@ abstract class Form<
       ? null
       : _.reduce(
           error.details,
-          function (obj: { [key: string]: string }, param) {
+          function (obj: { [key: string]: FieldError }, param) {
             const path = param.path[0];
-            obj[path] = param.message;
+            obj[path] = FieldError.Error(param.message);
             return obj;
           },
           {}
@@ -77,15 +78,15 @@ abstract class Form<
   }) => {
     const errors = { ...this.state.errors };
     const errorMessage = this.validateProperty(target);
-    if (errorMessage) errors[target.name] = errorMessage;
+    if (errorMessage) errors[target.name] = FieldError.Error(errorMessage);
     else delete errors[target.name];
     const data: TFormContent = { ...this.state.data };
     _.set(data, target.name, target.value);
     this.setState({ data, errors });
   };
 
-  renderSubmitButton(label: string, className: string = "") {
-    let buttonClassName = "button";
+  renderSubmitButton(label: string, className: string = '') {
+    let buttonClassName = 'button';
     if (className) {
       buttonClassName += ` ${className}`;
     }
@@ -100,7 +101,7 @@ abstract class Form<
     name: string,
     label: string,
     type: string,
-    className: string = ""
+    className: string = ''
   ) {
     const { data, errors } = this.state;
     return (
@@ -116,7 +117,7 @@ abstract class Form<
     );
   }
 
-  renderTextArea(name: string, label: string, className: string = "") {
+  renderTextArea(name: string, label: string, className: string = '') {
     const { data, errors } = this.state;
     return (
       <TextArea
@@ -128,6 +129,12 @@ abstract class Form<
         onChange={this.handleChange}
       ></TextArea>
     );
+  }
+
+  getFieldError(name: string) {
+    const error = this.state.errors[name];
+    if (!error) return '';
+    return error.message;
   }
 }
 

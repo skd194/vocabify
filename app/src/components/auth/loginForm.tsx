@@ -1,5 +1,8 @@
+import { Axios, AxiosError } from 'axios';
 import Joi from 'joi';
+import { toast } from 'react-toastify';
 import Form from '../common/form';
+import { FieldError } from "../common/fieldError";
 import auth from './../../services/auth/authService';
 import * as models from './models';
 
@@ -18,13 +21,17 @@ class LoginForm extends Form<
   });
 
   async doSubmit() {
-    const content = this.state.data;
-    var p = await auth.login({
-      username: content.username,
-      password: content.password,
-    });
-
-    //throw new Error("Method not implemented.");
+    const { username, password } = this.state.data;
+    try {
+      await auth.login({ username, password });
+    } catch (ex: any) {
+      if (ex.response && ex.response.status === 401) {
+        const errors = { ...this.state.errors };
+        errors.username = FieldError.FlagError;
+        errors.password = FieldError.Error('please check your credentials');
+        this.setState({ errors });
+      }
+    }
   }
 
   render() {

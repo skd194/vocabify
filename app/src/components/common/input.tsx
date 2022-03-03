@@ -1,9 +1,10 @@
-import { ChangeEvent } from "react";
+import { string } from 'joi';
+import FieldErrorMessage, { FieldError } from './fieldError';
 
 export interface InputProps {
   name: string;
   label: string;
-  error: string;
+  error: FieldError;
   className: string;
 }
 
@@ -13,15 +14,17 @@ const Input = ({
   error,
   className,
   ...rest
-}: InputProps & { [key: string]: string | ((e: any) => void) }) => {
-  const getClasses = (error: string, additionalClass: string) => {
+}: InputProps & {
+  [key: string]: string | FieldError | ((e: any) => void);
+}) => {
+  const getClasses = (error: FieldError, additionalClass: string) => {
     const inputClasses = `input ${additionalClass}`;
     return error ? `${inputClasses} is-danger` : inputClasses;
   };
 
   return (
     <>
-      <div className="field">
+      <div className='field'>
         <input
           id={name}
           name={name}
@@ -29,11 +32,7 @@ const Input = ({
           className={getClasses(error, className)}
           {...rest}
         />
-        {error && (
-          <div style={{ color: "red", marginTop: 0, fontStyle: "italic" }}>
-            <small>{error}</small>
-          </div>
-        )}
+        <FieldErrorMessage error={error}></FieldErrorMessage>
       </div>
     </>
   );

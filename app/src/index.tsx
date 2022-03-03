@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './layout/App';
 import reportWebVitals from './reportWebVitals';
 import logger from './services/logService';
-import ErrorBoundary from './components/common/ErrorBoundary';
+import ErrorBoundary from './components/common/errorBoundary';
 
 import 'bulma/css/bulma.css';
 import '@creativebulma/bulma-tooltip/dist/bulma-tooltip.css';
