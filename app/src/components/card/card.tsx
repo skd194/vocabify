@@ -11,6 +11,7 @@ const Card: React.FunctionComponent<CardProps> = ({
 }: {
   card: ICard;
 }) => {
+
   return (
     <div
       className="box"

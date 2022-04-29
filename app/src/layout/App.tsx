@@ -1,17 +1,17 @@
-import * as React from "react";
-import { Route } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import Dashboard from "../dashboard";
-import { ICard } from "../models/card";
-import NavBar from "./NavBar";
-import AuthRoute from "./../components/common/authRoute";
-import LoginForm from "../components/auth/loginForm";
+import * as React from 'react';
+import { Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import Dashboard from '../dashboard';
+import { ICard } from '../models/card';
+import NavBar from './NavBar';
+import AuthRoute from './../components/common/authRoute';
+import LoginForm from '../components/auth/loginForm';
 
 interface AppProps {}
 
 interface AppState {}
 
-class App extends React.Component<AppProps, AppState> {
+class AppNew extends React.Component<AppProps, AppState> {
   state = {};
 
   cards: ICard[] = [];
@@ -21,7 +21,7 @@ class App extends React.Component<AppProps, AppState> {
       <>
         <NavBar></NavBar>
         <ToastContainer />
-        <div className="container" style={{ marginTop: 30 }}>
+        <div className='container' style={{ marginTop: 30 }}>
           {/* <Dashboard cards={this.cards}></Dashboard> */}
           {/* <Users></Users> */}
           <LoginForm></LoginForm>
@@ -43,248 +43,248 @@ class App extends React.Component<AppProps, AppState> {
 
 export default App;
 
-function App2() {
+function App() {
   // const [cards, setCards] = useState<ICard[]>([]);
 
   const cards: ICard[] = [
     {
       id: 25,
-      name: "General ....",
+      name: 'General ....',
       notes: [
         {
           id: 5666,
-          content: "Hello how are you",
+          content: 'Hello how are you',
           wordbook: {
             id: 25,
             words: [
               {
-                id: "dasd",
-                word: "cram",
-                definition: ["to fit in tight"],
+                id: 'dasd',
+                word: 'cram',
+                definition: ['to fit in tight'],
               },
             ],
           },
         },
         {
           id: 5666,
-          content: "Hello how are you",
+          content: 'Hello how are you',
           wordbook: {
             id: 25,
             words: [
               {
-                id: "dasd",
-                word: "cram",
-                definition: ["to fit in tight"],
+                id: 'dasd',
+                word: 'cram',
+                definition: ['to fit in tight'],
               },
             ],
           },
         },
         {
           id: 5666,
-          content: "Hello how are you",
+          content: 'Hello how are you',
           wordbook: {
             id: 25,
             words: [
               {
-                id: "dasd",
-                word: "cram",
-                definition: ["to fit in tight"],
+                id: 'dasd',
+                word: 'cram',
+                definition: ['to fit in tight'],
               },
             ],
           },
         },
         {
           id: 5666,
-          content: "Hello how are you",
+          content: 'Hello how are you',
           wordbook: {
             id: 25,
             words: [
               {
-                id: "dasd",
-                word: "cram",
-                definition: ["to fit in tight"],
+                id: 'dasd',
+                word: 'cram',
+                definition: ['to fit in tight'],
               },
             ],
           },
         },
         {
           id: 5666,
-          content: "Hello how are you",
+          content: 'Hello how are you',
           wordbook: {
             id: 25,
             words: [
               {
-                id: "dasd",
-                word: "cram",
-                definition: ["to fit in tight"],
+                id: 'dasd',
+                word: 'cram',
+                definition: ['to fit in tight'],
               },
             ],
           },
         },
         {
           id: 5666,
-          content: "Hello how are you",
+          content: 'Hello how are you',
           wordbook: {
             id: 25,
             words: [
               {
-                id: "dasd",
-                word: "cram",
-                definition: ["to fit in tight"],
+                id: 'dasd',
+                word: 'cram',
+                definition: ['to fit in tight'],
               },
             ],
           },
         },
         {
           id: 5666,
-          content: "Hello how are you",
+          content: 'Hello how are you',
           wordbook: {
             id: 25,
             words: [
               {
-                id: "dasd",
-                word: "cram",
-                definition: ["to fit in tight"],
+                id: 'dasd',
+                word: 'cram',
+                definition: ['to fit in tight'],
               },
             ],
           },
         },
         {
           id: 5666,
-          content: "Hello how are you",
+          content: 'Hello how are you',
           wordbook: {
             id: 25,
             words: [
               {
-                id: "dasd",
-                word: "cram",
-                definition: ["to fit in tight"],
+                id: 'dasd',
+                word: 'cram',
+                definition: ['to fit in tight'],
               },
             ],
           },
         },
         {
           id: 5666,
-          content: "Hello how are you",
+          content: 'Hello how are you',
           wordbook: {
             id: 25,
             words: [
               {
-                id: "dasd",
-                word: "cram",
-                definition: ["to fit in tight"],
+                id: 'dasd',
+                word: 'cram',
+                definition: ['to fit in tight'],
               },
             ],
           },
         },
         {
           id: 5666,
-          content: "Hello how are you",
+          content: 'Hello how are you',
           wordbook: {
             id: 25,
             words: [
               {
-                id: "dasd",
-                word: "cram",
-                definition: ["to fit in tight"],
+                id: 'dasd',
+                word: 'cram',
+                definition: ['to fit in tight'],
               },
             ],
           },
         },
         {
           id: 5666,
-          content: "Hello how are you",
+          content: 'Hello how are you',
           wordbook: {
             id: 25,
             words: [
               {
-                id: "dasd",
-                word: "cram",
-                definition: ["to fit in tight"],
+                id: 'dasd',
+                word: 'cram',
+                definition: ['to fit in tight'],
               },
             ],
           },
         },
         {
           id: 5666,
-          content: "Hello how are you",
+          content: 'Hello how are you',
           wordbook: {
             id: 25,
             words: [
               {
-                id: "dasd",
-                word: "cram",
-                definition: ["to fit in tight"],
+                id: 'dasd',
+                word: 'cram',
+                definition: ['to fit in tight'],
               },
             ],
           },
         },
         {
           id: 5666,
-          content: "Hello how are you",
+          content: 'Hello how are you',
           wordbook: {
             id: 25,
             words: [
               {
-                id: "dasd",
-                word: "cram",
-                definition: ["to fit in tight"],
+                id: 'dasd',
+                word: 'cram',
+                definition: ['to fit in tight'],
               },
             ],
           },
         },
         {
           id: 5666,
-          content: "Hello how are you",
+          content: 'Hello how are you',
           wordbook: {
             id: 25,
             words: [
               {
-                id: "dasd",
-                word: "cram",
-                definition: ["to fit in tight"],
+                id: 'dasd',
+                word: 'cram',
+                definition: ['to fit in tight'],
               },
             ],
           },
         },
         {
           id: 5666,
-          content: "Hello how are you",
+          content: 'Hello how are you',
           wordbook: {
             id: 25,
             words: [
               {
-                id: "dasd",
-                word: "cram",
-                definition: ["to fit in tight"],
+                id: 'dasd',
+                word: 'cram',
+                definition: ['to fit in tight'],
               },
             ],
           },
         },
         {
           id: 5666,
-          content: "Hello how are you",
+          content: 'Hello how are you',
           wordbook: {
             id: 25,
             words: [
               {
-                id: "dasd",
-                word: "cram",
-                definition: ["to fit in tight"],
+                id: 'dasd',
+                word: 'cram',
+                definition: ['to fit in tight'],
               },
             ],
           },
         },
         {
           id: 5666,
-          content: "Hello how are you",
+          content: 'Hello how are you',
           wordbook: {
             id: 25,
             words: [
               {
-                id: "dasd",
-                word: "cram",
-                definition: ["to fit in tight"],
+                id: 'dasd',
+                word: 'cram',
+                definition: ['to fit in tight'],
               },
             ],
           },
@@ -297,7 +297,7 @@ function App2() {
     <>
       <NavBar></NavBar>
       <ToastContainer />
-      <div className="container" style={{ marginTop: 30 }}>
+      <div className='container' style={{ marginTop: 30 }}>
         <Dashboard cards={cards}></Dashboard>
         {/* <Users></Users> */}
       </div>
