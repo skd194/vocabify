@@ -11,7 +11,7 @@ interface AppProps {}
 
 interface AppState {}
 
-class AppNew extends React.Component<AppProps, AppState> {
+class App extends React.Component<AppProps, AppState> {
   state = {};
 
   cards: ICard[] = [];
@@ -43,7 +43,7 @@ class AppNew extends React.Component<AppProps, AppState> {
 
 export default App;
 
-function App() {
+function AppOld() {
   // const [cards, setCards] = useState<ICard[]>([]);
 
   const cards: ICard[] = [
