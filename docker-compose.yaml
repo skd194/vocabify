@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+
+  app:
+    build: ./app
+    ports:
+      - 3000:3000
+    volumes:
+      - ./app:/app/
+
+  api:
+    build: ./api/Api
+    ports:
+      - 5001:80
+    volumes:
+      - ./api/Api:/app
+    # environment:
+    #   - DB_URL=
+
+#   db:
+#     image: ""
+#     ports:
+#       - 27017:27017
+#     volumes:
+#       - volname: /data/db
+
+# volumes:
+#   volname:
+
+

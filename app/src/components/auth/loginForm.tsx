@@ -2,7 +2,7 @@ import { Axios, AxiosError } from 'axios';
 import Joi from 'joi';
 import { toast } from 'react-toastify';
 import Form from '../common/form';
-import { FieldError } from "../common/fieldError";
+import { FieldError } from '../common/fieldError';
 import auth from './../../services/auth/authService';
 import * as models from './models';
 

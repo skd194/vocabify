@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+
+  app:
+    build: 
+      context: ./app
+      dockerfile: Dockerfile.prod
+    ports:
+      - 80:80
+    restart: unless-stopped
+
+  api:
+    build: ./api/Api
+    ports:
+      - 5001:80
+    restart: unless-stopped
+    # environment:
+    #   - DB_URL=
+
+#   db:
+#     image: ""
+#     ports:
+#       - 27017:27017
+#     volumes:
+#       - volname: /data/db
+
+# volumes:
+#   volname:
+
+
