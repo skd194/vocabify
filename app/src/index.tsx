@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './layout/App';
 import reportWebVitals from './reportWebVitals';
 import logger from './services/logService';
-import ErrorBoundary from './components/common/errorBoundary';
+// import ErrorBoundary from './components/common/errorBoundary';
 
 import 'bulma/css/bulma.css';
 import '@creativebulma/bulma-tooltip/dist/bulma-tooltip.css';
@@ -14,9 +14,9 @@ logger.init();
 
 ReactDOM.render(
   <React.StrictMode>
-    <ErrorBoundary>
-      <App />
-    </ErrorBoundary>
+    {/* <ErrorBoundary> */}
+    <App />
+    {/* </ErrorBoundary> */}
   </React.StrictMode>,
   document.getElementById('root')
 );
